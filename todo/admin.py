@@ -15,6 +15,7 @@ class TodoListAdmin(admin.ModelAdmin):
     list_display = ('name', )
     inlines = (TodoInline, )
 
+
 @admin.register(Todo)
 class TodoAdmin(admin.ModelAdmin):
 
