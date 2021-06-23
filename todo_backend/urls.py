@@ -18,9 +18,11 @@ from django.urls import path, include
 from rest_framework import routers
 
 from todo.urls import router as todo_router
+from user_management.urls import router as user_management_router
 
 router = routers.DefaultRouter()
 router.registry.extend(todo_router.registry)
+router.registry.extend(user_management_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
