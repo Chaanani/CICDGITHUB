@@ -17,3 +17,12 @@ class TodoListSerializer(serializers.ModelSerializer):
     class Meta:
         model = TodoList
         fields = '__all__'
+
+
+class TodoListDetailSerializer(serializers.ModelSerializer):
+
+    todos = TodoSerializer(source='todo_set', many=True)
+
+    class Meta:
+        model = TodoList
+        fields = '__all__'

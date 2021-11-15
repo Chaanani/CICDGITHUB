@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from todo.models import Todo, TodoList
-from todo.serializers import TodoSerializer, TodoListSerializer
+from todo.serializers import TodoSerializer, TodoListSerializer, TodoListDetailSerializer
 
 
 class TodoViewSet(viewsets.ModelViewSet):
@@ -25,3 +25,8 @@ class TodoListViewSet(viewsets.ModelViewSet):
     queryset = TodoList.objects.all()
     serializer_class = TodoListSerializer
     permission_classes = (IsAuthenticated, )
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return TodoListDetailSerializer
+        return TodoListSerializer
