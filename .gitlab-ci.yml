@@ -31,7 +31,7 @@ deploy_to_test:
   script:
     - docker stop todo_backend || true
     - docker update --restart=no todo_backend || true
-    - docker rm todo_backend_od || true
+    - docker rm todo_backend_old || true
     - docker rename todo_backend todo_backend_old || true
     - docker run -d --name todo_backend --restart=always -p 8000:8000 $CI_REGISTRY_IMAGE:dev
   tags:
