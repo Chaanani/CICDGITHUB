@@ -4,7 +4,7 @@ stages:
   - deploy
 
 before_script:
-  - docker login -u simpletech-runner-token -p $TODO_DEPLOY_TOKEN gitlab.eezyr.com:5050
+  - docker login -u simpletech-runner -p $TODO_DEPLOY_TOKEN $CI_REGISTRY
 
 django_unit_tests:
   stage: test
