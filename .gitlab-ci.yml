@@ -2,7 +2,7 @@ stages:
   - test
   - dockerize
   - deploy
-  -
+
 before_script:
   - docker login -u docify_deploy -p $TODO_DEPLOY_TOKEN gitlab.eezyr.com:5050
 
