@@ -1,7 +1,10 @@
 stages:
   - test
-  - build
+  - dockerize
   - deploy
+  -
+before_script:
+  - docker login -u docify_deploy -p $TODO_DEPLOY_TOKEN gitlab.eezyr.com:5050
 
 django_unit_tests:
   stage: test
@@ -10,5 +13,15 @@ django_unit_tests:
     - pip install -U -r requirements.txt
     - python manage.py test --noinput
     - deactivate
+  tags:
+    - simpletech-test
+
+generate_container:
+  stage: dockerize
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build --pull --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:dev .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE:dev
   tags:
     - simpletech-test
