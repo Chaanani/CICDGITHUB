@@ -28,8 +28,6 @@ generate_container:
 
 deploy_to_test:
   stage: deploy
-  only:
-    - dev
   script:
     - docker stop todo_backend || true
     - docker update --restart=no todo_backend || true
