@@ -1,0 +1,12 @@
+stages:
+  - test
+  - build
+  - deploy
+
+django_unit_tests:
+  stage: test
+  script:
+    - source /mnt/c/Users/ptipo/VirtualEnvs/todo-backend/bin/activate
+    - pip install -U -r requirements.txt
+    - python manage.py test --noinput
+    - deactivate
