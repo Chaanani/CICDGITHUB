@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import os
 
 from pathlib import Path
 
@@ -95,7 +96,7 @@ DATABASES = {
         'NAME': 'todo_db',
         'USER': 'todo_user',
         'PASSWORD': 'todo_pass',
-        'HOST': 'localhost',
+        'HOST': '192.168.2.71',
         'PORT': '5433'
     }
 }
@@ -139,7 +140,12 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/opt/app/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS =( os.path.join(STATIC_ROOT, 'css/'),
+                    os.path.join(STATIC_ROOT, 'javascript/'),
+                    os.path.join(STATIC_ROOT, 'images/')
+                  )
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
