@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'todo_db',
         'USER': 'todo_user',
         'PASSWORD': 'todo_pass',
-        'HOST': '192.168.2.71',
+        'HOST': 'localhost',
         'PORT': '5433'
     }
 }
@@ -141,10 +141,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS =( os.path.join(STATIC_ROOT, 'css/'),
-                    os.path.join(STATIC_ROOT, 'javascript/'),
-                    os.path.join(STATIC_ROOT, 'images/')
-                  )
 
 
 CORS_ALLOWED_ORIGINS = [
