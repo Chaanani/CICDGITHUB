@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'todo',
+    'private_storage',
     'user_management'
 ]
 
@@ -154,3 +155,9 @@ SWAGGER_SETTINGS = {
     'LOGIN_URL': '/admin/login/',
     'LOGOUT_URL': '/admin/logout/'
 }
+
+MEDIA_ROOT = './media/'
+MEDIA_URL = '/media/'
+
+PRIVATE_STORAGE_ROOT = './private-media/'
+PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_authenticated'

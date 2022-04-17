@@ -1,4 +1,5 @@
 from django.db import models
+from private_storage.fields import PrivateFileField
 
 
 class Todo(models.Model):
@@ -7,6 +8,8 @@ class Todo(models.Model):
     due_date = models.DateField()
     completed = models.BooleanField()
     favourite = models.BooleanField()
+    attachment = models.FileField(upload_to='public', null=True)
+    private_file = PrivateFileField(upload_to='private', null=True)
 
     list = models.ForeignKey('TodoList', null=False, on_delete=models.CASCADE)
 

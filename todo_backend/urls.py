@@ -24,6 +24,7 @@ from rest_framework import routers, permissions
 from todo.urls import router as todo_router
 from user_management.urls import router as user_management_router
 
+import private_storage.urls
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -46,9 +47,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('', include(router.urls)),
+    re_path('^private-media/', include(private_storage.urls)),
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
